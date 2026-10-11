@@ -6,256 +6,332 @@
   <title>Hall 2 Production Twin</title>
   <style>
     :root {
-      --bg: #c7c4c0;
-      --floor: #c7c7bd;
-      --ground: #b7bca8;
-      --steel-dark: #4e5054;
-      --steel-mid: #72767b;
-      --steel-light: #b2b5b9;
-      --line-1: #d2d3c9;
-      --line-2: #a4a6a0;
-      --accent-green: #3dea71;
-      --accent-yellow: #f9e81c;
-      --accent-blue: #00b6ff;
-      --shadow: rgba(0, 0, 0, 0.26);
-      --sienna: #d8c29d;
-      --ink: #121515;
-      --panel: rgba(18, 21, 21, 0.74);
-      --panel-2: rgba(12, 14, 14, 0.92);
-      --muted: #dfe3e7;
-      --owner: #eae7df;
+      --bg: #c4c6c1;
+      --panel: rgba(18, 18, 18, 0.72);
+      --panel-soft: rgba(255,255,255,0.12);
+      --steel-1: #aeb4b7;
+      --steel-2: #7c8388;
+      --steel-3: #d9d8d2;
+      --line-cream: #d9d8c9;
+      --line-silver: #a6a8a1;
+      --yellow: #f4eb1f;
+      --green: #35e76e;
+      --wood: #d4bc90;
+      --wood-dark: #b89a68;
+      --dark: #1b1d1e;
+      --white: #f5f7f8;
+      --owner: #f2f2ee;
     }
 
     * { box-sizing: border-box; }
 
     html, body {
       margin: 0;
-      height: 100%;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #b5b7b1;
-      color: var(--ink);
+      width: 100%;
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
     }
 
     body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
-      overflow-x: hidden;
+      overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.1), rgba(0,0,0,0.12)),
-        #bdbdb7;
+        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(0,0,0,0.08)),
+        #bdbbb7;
     }
 
     .page {
       position: relative;
-      width: 100%;
-      min-height: 100vh;
-      background: linear-gradient(180deg, #b9b8b4 0%, #b3b3ae 100%);
+      width: 100vw;
+      height: 100vh;
       overflow: hidden;
+      background: linear-gradient(180deg, #c0c1bc 0%, #bbbab5 100%);
     }
 
-    .top-owner {
-      position: absolute;
-      top: 14px;
-      left: 24px;
-      right: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 50;
-      pointer-events: none;
-    }
-
-    .top-owner .brand {
-      background: rgba(19, 21, 22, 0.70);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: white;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-      border-radius: 10px;
-      padding: 10px 18px 12px 18px;
-      backdrop-filter: blur(4px);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 700;
-      pointer-events: auto;
-    }
-
-    .top-owner .owner {
-      background: rgba(255,255,255,0.16);
-      border: 1px solid rgba(12, 12, 12, 0.2);
-      color: var(--owner);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 8px 18px rgba(0,0,0,0.12);
-      border-radius: 999px;
-      padding: 10px 18px;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 700;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      pointer-events: auto;
-    }
-
-    .scene-wrap {
-      position: relative;
-      width: 100%;
-      height: calc(100vh - 110px);
-      min-height: 640px;
-      padding-top: 58px;
-    }
-
-    .scene {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: linear-gradient(180deg, #d4d3cf 0%, #c1bfb8 100%);
-    }
-
-    .ground {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.28), rgba(0,0,0,0.06)),
-        linear-gradient(90deg, rgba(0,0,0,0.03), rgba(255,255,255,0.08));
-    }
-
-    .floor-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px);
-      background-size: 48px 48px;
-      opacity: 0.40;
-      transform: scale(1.06);
-      filter: blur(0.2px);
-    }
-
-    .hall {
+    .top-owner, .bottom-owner {
       position: absolute;
       left: 0;
       right: 0;
-      top: 5%;
-      bottom: 10%;
-      perspective: 1300px;
-      transform-style: preserve-3d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 20;
+      padding: 14px 22px;
+      pointer-events: none;
     }
 
-    .iso-board {
+    .top-owner {
+      top: 0;
+    }
+
+    .bottom-owner {
+      bottom: 0;
+      justify-content: center;
+    }
+
+    .brand, .owner-tag {
+      pointer-events: auto;
+      background: rgba(18, 20, 20, 0.72);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+    }
+
+    .owner-tag {
+      background: rgba(255,255,255,0.12);
+      border-radius: 999px;
+      color: var(--owner);
+      padding: 10px 18px;
+      letter-spacing: 0.12em;
+    }
+
+    .scene {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.18), rgba(0,0,0,0.05)),
+        linear-gradient(90deg, rgba(0,0,0,0.02), rgba(255,255,255,0.04));
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.32;
+      transform: scale(1.12);
+    }
+
+    .plan {
       position: absolute;
       left: 50%;
       top: 58%;
-      width: min(1440px, 92vw);
-      height: min(770px, 74vh);
-      transform: translate(-50%, -50%) rotateX(61deg) rotateZ(-28deg) scale(1.08);
+      width: min(1400px, 92vw);
+      height: min(760px, 72vh);
+      transform: translate(-50%, -50%) rotateX(58deg) rotateZ(-28deg);
       transform-style: preserve-3d;
+      border-radius: 8px;
     }
 
     .road {
       position: absolute;
-      left: 5%;
+      left: 3%;
       top: 12%;
-      width: 90%;
-      height: 63%;
-      background: linear-gradient(180deg, rgba(165,170,164,0.62), rgba(165,170,164,0.88));
-      border: 2px solid rgba(26,26,26,0.4);
-      box-shadow: inset 0 0 0 3px rgba(0,0,0,0.12);
-      border-radius: 4px;
-      transform: translateZ(8px);
-    }
-
-    .road::before, .road::after {
-      content: "";
-      position: absolute;
-      inset: 18% 0 auto 0;
-      height: 10px;
-      background: rgba(255,255,255,0.06);
-    }
-
-    .road::after {
-      inset: auto 0 18% 0;
+      width: 94%;
+      height: 65%;
+      background: linear-gradient(180deg, rgba(162,167,162,0.84), rgba(151,155,151,0.92));
+      border: 2px solid rgba(20,20,20,0.38);
+      box-shadow: inset 0 0 0 4px rgba(0,0,0,0.08);
+      border-radius: 6px;
     }
 
     .lane {
       position: absolute;
-      background: rgba(32,32,32,0.08);
-      border: 1px solid rgba(0,0,0,0.28);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+      border: 1px solid rgba(0,0,0,0.14);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
     }
 
     .lane.yellow {
-      background: rgba(245,232,75,0.92);
-      box-shadow: 0 0 0 2px rgba(0,0,0,0.18), 0 0 16px rgba(251,242,67,0.6);
+      background: rgba(242, 232, 30, 0.96);
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.12);
     }
 
     .lane.green {
-      background: rgba(56, 225, 87, 0.9);
-      box-shadow: 0 0 0 2px rgba(0,0,0,0.15), 0 0 16px rgba(78,255,117,0.4);
+      background: rgba(43, 226, 90, 0.95);
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.12);
     }
 
-    .line-mark-1 { left: 8%; top: 40%; width: 44%; height: 18px; }
-    .line-mark-2 { left: 46%; top: 40%; width: 24%; height: 18px; }
-    .line-mark-3 { left: 52%; bottom: 14%; width: 26%; height: 18px; }
-    .line-mark-4 { left: 22%; bottom: 17%; width: 44%; height: 18px; }
+    .road-line-1 { left: 8%; top: 38%; width: 46%; height: 18px; }
+    .road-line-2 { left: 46%; top: 38%; width: 28%; height: 18px; }
+    .road-line-3 { left: 50%; bottom: 18%; width: 32%; height: 18px; }
+    .road-line-4 { left: 17%; bottom: 18%; width: 46%; height: 18px; }
 
-    .green-1 { left: 8%; top: 27%; width: 18px; height: 19%; }
-    .green-2 { left: 52%; top: 44%; width: 18px; height: 22%; }
-    .yellow-1 { left: 14%; top: 52%; width: 42%; height: 18px; }
-    .yellow-2 { left: 43%; top: 18%; width: 38%; height: 18px; }
-    .yellow-3 { left: 46%; bottom: 17%; width: 38%; height: 18px; }
+    .green-rail-1 { left: 4%; top: 20%; width: 18px; height: 28%; }
+    .green-rail-2 { left: 53%; top: 43%; width: 18px; height: 26%; }
 
-    .line-group {
+    .label {
       position: absolute;
-      left: 33%;
-      top: 17%;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(20,22,22,0.9);
+      font-size: clamp(14px, 1.4vw, 32px);
+      text-shadow: 1px 1px 0 rgba(255,255,255,0.18);
+      white-space: nowrap;
+    }
+
+    .label.hall {
+      left: 57%;
+      top: 27%;
+      transform: rotate(-90deg);
+    }
+
+    .label.output {
+      right: 5%;
+      top: 28%;
+      transform: rotate(-90deg);
+    }
+
+    .label.rack {
+      left: 30%;
+      top: 43%;
+      transform: rotate(-90deg);
+    }
+
+    .label.boxes {
+      right: 18%;
+      bottom: 18%;
+      transform: rotate(90deg);
+    }
+
+    .input-zone, .output-zone, .rack-zone, .box-zone {
+      position: absolute;
+      border: 2px solid rgba(0,0,0,0.42);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.08);
+    }
+
+    .input-zone {
+      left: 4%;
+      top: 22%;
+      width: 16%;
+      height: 32%;
+      background: linear-gradient(180deg, #d1d2cd 0%, #869091 100%);
+    }
+
+    .output-zone {
+      right: 7%;
+      top: 20%;
       width: 24%;
-      height: 44%;
+      height: 32%;
+      background: linear-gradient(180deg, #d5d4cf 0%, #9a9ca0 100%);
+    }
+
+    .rack-zone {
+      left: 27%;
+      top: 36%;
+      width: 22%;
+      height: 28%;
+      background: linear-gradient(180deg, #d4c6a6 0%, #ba9e72 100%);
+    }
+
+    .box-zone {
+      right: 18%;
+      bottom: 10%;
+      width: 32%;
+      height: 20%;
+      background: linear-gradient(180deg, #cdb693 0%, #b59263 100%);
+    }
+
+    .input-zone .inner-label,
+    .output-zone .inner-label,
+    .rack-zone .inner-label,
+    .box-zone .inner-label {
+      position: absolute;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(16,17,18,0.94);
+      font-size: clamp(12px, 1.2vw, 28px);
+      text-shadow: 1px 1px 0 rgba(255,255,255,0.12);
+      white-space: nowrap;
+    }
+
+    .input-zone .inner-label {
+      left: -12%;
+      top: 32%;
+      transform: rotate(90deg);
+    }
+
+    .output-zone .inner-label {
+      right: -24%;
+      top: 35%;
+      transform: rotate(-90deg);
+    }
+
+    .rack-zone .inner-label {
+      left: 18%;
+      top: 8%;
+      transform: rotate(-90deg);
+    }
+
+    .box-zone .inner-label {
+      right: 0%;
+      bottom: 8%;
+      transform: rotate(90deg);
+    }
+
+    .rack-boxes, .box-stack {
+      position: absolute;
+      display: grid;
+      gap: 10% 8%;
+      z-index: 2;
+    }
+
+    .rack-boxes {
+      inset: 12% 8% 16% 8%;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+    }
+
+    .box-stack {
+      inset: 10% 8% 12% 8%;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+
+    .rack-boxes span, .box-stack span {
+      display: block;
+      background: linear-gradient(180deg, #d9c59d 0%, #c1a57d 100%);
+      border: 2px solid rgba(0,0,0,0.35);
+      box-shadow: inset -2px 2px 0 rgba(0,0,0,0.08);
+    }
+
+    .line-row {
+      position: absolute;
+      left: 31%;
+      top: 14%;
+      width: 38%;
+      height: 48%;
       display: flex;
-      flex-direction: row;
+      gap: 5px;
+      align-items: flex-end;
       justify-content: space-between;
-      align-items: flex-end;
-      transform: translateZ(24px);
+      z-index: 3;
     }
 
-    .line-unit {
+    .line {
       position: relative;
-      width: 7.2%;
+      width: 8%;
       height: 100%;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      filter: drop-shadow(0 14px 6px rgba(0,0,0,0.18));
-    }
-
-    .line-body {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, #d5d0c8 0%, #a1a4a1 100%);
-      border: 2px solid rgba(21,26,28,0.8);
-      border-top: 3px solid rgba(0, 0, 0, 0.34);
-      border-right: 2px solid rgba(0,0,0,0.55);
-      border-bottom: 4px solid rgba(0,0,0,0.2);
-      box-shadow: inset -2px 2px 0 rgba(255,255,255,0.2), inset 1px -3px 0 rgba(0,0,0,0.15);
+      background: linear-gradient(180deg, #d8d5d0 0%, #a2a3a1 100%);
+      border: 2px solid rgba(18,18,18,0.72);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.10);
       transform: skewY(-1deg);
     }
 
-    .line-body::before {
-      content: "";
-      position: absolute;
-      left: 12%;
-      right: 12%;
-      top: 8%;
-      bottom: 16%;
-      background: rgba(255,255,255,0.06);
-      border-left: 2px solid rgba(0,0,0,0.2);
-      border-right: 2px solid rgba(0,0,0,0.2);
+    .line:nth-child(odd) {
+      background: linear-gradient(180deg, #cfcac3 0%, #93999a 100%);
     }
 
-    .line-unit:nth-child(odd) .line-body {
-      background: linear-gradient(180deg, #c6c3be 0%, #94999b 100%);
+    .line::before {
+      content: "";
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      top: 8%;
+      bottom: 16%;
+      border-left: 2px solid rgba(0,0,0,0.18);
+      border-right: 2px solid rgba(0,0,0,0.18);
+      background: rgba(255,255,255,0.04);
     }
 
     .line-tag {
@@ -263,261 +339,51 @@
       left: 50%;
       top: 18%;
       transform: translate(-50%, 0) rotate(-90deg);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      font-size: 17px;
-      color: rgba(18,21,22,0.9);
-      text-transform: uppercase;
-      white-space: nowrap;
-      text-shadow: 1px 1px 0 rgba(255,255,255,0.3);
-    }
-
-    .line-tag span {
-      display: inline-block;
-      transform: translateY(3px);
-    }
-
-    .input-zone {
-      position: absolute;
-      left: 5%;
-      top: 22%;
-      width: 15%;
-      height: 33%;
-      transform: translateZ(30px);
-    }
-
-    .input-zone .zone-wall,
-    .output-zone .zone-wall,
-    .rack-zone .zone-wall,
-    .box-zone .zone-wall {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.1));
-      border: 2px solid rgba(0,0,0,0.5);
-      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.08);
-    }
-
-    .input-zone .zone-wall {
-      background: linear-gradient(180deg, #d0d3cf 0%, #7f8a89 100%);
-    }
-
-    .output-zone {
-      position: absolute;
-      right: 8%;
-      top: 22%;
-      width: 22%;
-      height: 32%;
-      transform: translateZ(26px);
-    }
-
-    .output-zone .zone-wall {
-      background: linear-gradient(180deg, #d9d8d3 0%, #969a9e 100%);
-    }
-
-    .zone-label {
-      position: absolute;
-      display: inline-block;
-      font-weight: 800;
-      font-size: clamp(12px, 1.15vw, 30px);
+      font-size: 16px;
+      font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      color: rgba(16,17,17,0.9);
       white-space: nowrap;
-      color: rgba(18, 20, 20, 0.92);
-      text-shadow: 1px 1px 0 rgba(255,255,255,0.25);
     }
 
-    .zone-label.input {
-      left: -14%;
-      top: 36%;
-      transform: rotate(90deg);
-    }
-
-    .zone-label.output {
-      right: -24%;
-      top: 32%;
-      transform: rotate(-90deg);
-    }
-
-    .zone-label.rack {
-      left: 26%;
-      top: 14%;
-      transform: rotate(-90deg);
-    }
-
-    .zone-label.boxes {
-      right: -10%;
-      bottom: 12%;
-      transform: rotate(90deg);
-    }
-
-    .rack-zone {
-      position: absolute;
-      left: 30%;
-      top: 34%;
-      width: 18%;
-      height: 26%;
-      transform: translateZ(18px);
-    }
-
-    .rack-zone .zone-wall {
-      background: linear-gradient(180deg, #d4ceb8 0%, #b7a28a 100%);
-      border-color: rgba(36,36,32,0.52);
-    }
-
-    .rack-boxes {
-      position: absolute;
-      inset: 12% 8% 14% 8%;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      gap: 10% 10%;
-      z-index: 2;
-    }
-
-    .rack-boxes span {
-      display: block;
-      background: linear-gradient(180deg, #d9c6a1, #c1a97e);
-      border: 2px solid rgba(0,0,0,0.32);
-      box-shadow: inset -3px 3px 0 rgba(0,0,0,0.08);
-    }
-
-    .box-zone {
-      position: absolute;
-      right: 20%;
-      bottom: 8%;
-      width: 28%;
-      height: 21%;
-      transform: translateZ(14px);
-    }
-
-    .box-zone .zone-wall {
-      background: linear-gradient(180deg, #c4ae8d 0%, #b49f7d 100%);
-    }
-
-    .box-stack {
-      position: absolute;
-      inset: 10% 8% 10% 8%;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      gap: 8% 8%;
-      z-index: 2;
-    }
-
-    .box-stack span {
-      display: block;
-      background: linear-gradient(180deg, #d5c3a1 0%, #bd9f72 100%);
-      border: 2px solid rgba(0,0,0,0.32);
-      box-shadow: inset -3px 3px 0 rgba(0,0,0,0.06);
-    }
-
-    .legend-tag {
-      position: absolute;
-      font-weight: 800;
-      font-size: clamp(16px, 1.4vw, 36px);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: rgba(11, 13, 13, 0.94);
-      text-shadow: 1px 1px 0 rgba(255,255,255,0.18);
-    }
-
-    .legend-tag.hall {
-      left: 58%;
-      top: 28%;
-      transform: rotate(-90deg);
-    }
-
-    .legend-tag.outputs {
-      right: 2%;
-      top: 26%;
-      transform: rotate(90deg);
-    }
-
-    .legend-tag.rack {
-      left: 34%;
-      top: 56%;
-      transform: rotate(-90deg);
-    }
-
-    .legend-tag.boxes {
-      right: 17%;
-      bottom: 13%;
-      transform: rotate(90deg);
-    }
-
-    .mini-card {
+    .info-pill {
       position: absolute;
       left: 20px;
       bottom: 18px;
-      background: rgba(18,20,20,0.58);
+      background: rgba(17,20,20,0.68);
       color: white;
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 12px;
       padding: 10px 14px;
-      box-shadow: 0 12px 26px rgba(0,0,0,0.14);
-      z-index: 40;
-      backdrop-filter: blur(4px);
-      font-size: 12px;
-      letter-spacing: 0.08em;
+      font-size: 11px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      font-weight: 700;
+      z-index: 25;
     }
 
-    .mini-card .live {
-      font-weight: 700;
-      color: #69f27a;
+    .info-pill .live {
+      color: #69f47d;
       margin-left: 8px;
     }
 
-    .footer-owner {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 12px;
-      z-index: 60;
-      display: flex;
-      justify-content: center;
-      pointer-events: none;
-    }
-
-    .footer-owner .owner-chip {
-      background: rgba(16, 18, 18, 0.76);
-      border: 1px solid rgba(255,255,255,0.22);
-      border-radius: 999px;
-      padding: 10px 22px;
-      color: var(--owner);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.17em;
-      font-weight: 800;
-      box-shadow: 0 10px 18px rgba(0,0,0,0.12);
-      backdrop-filter: blur(4px);
-      pointer-events: auto;
-    }
-
-    @media (max-width: 980px) {
-      .top-owner {
-        left: 12px;
-        right: 12px;
+    @media (max-width: 920px) {
+      .top-owner, .bottom-owner {
+        padding-left: 12px;
+        padding-right: 12px;
       }
 
-      .top-owner .brand,
-      .top-owner .owner {
-        padding: 8px 12px;
-        font-size: 10px;
+      .brand, .owner-tag {
+        font-size: 9px;
         letter-spacing: 0.08em;
+        padding: 8px 12px;
       }
 
-      .scene-wrap {
-        height: calc(100vh - 100px);
-      }
-
-      .iso-board {
-        transform: translate(-50%, -50%) rotateX(60deg) rotateZ(-28deg) scale(0.95);
-      }
-
-      .mini-card {
-        left: 12px;
-        bottom: 12px;
+      .plan {
+        width: 96vw;
+        height: 70vh;
+        transform: translate(-50%, -50%) rotateX(54deg) rotateZ(-28deg) scale(0.95);
       }
     }
   </style>
@@ -526,80 +392,71 @@
   <div class="page">
     <div class="top-owner">
       <div class="brand">Hall 2 Production Twin</div>
-      <div class="owner">Owner: bejaouisf8-spec</div>
+      <div class="owner-tag">Owner: bejaouisf8-spec</div>
     </div>
 
-    <div class="scene-wrap">
-      <div class="scene">
-        <div class="ground"></div>
-        <div class="floor-grid"></div>
+    <div class="scene">
+      <div class="grid"></div>
 
-        <div class="hall">
-          <div class="iso-board">
-            <div class="road"></div>
+      <div class="plan">
+        <div class="road"></div>
 
-            <div class="lane yellow line-mark-1"></div>
-            <div class="lane yellow line-mark-2"></div>
-            <div class="lane yellow line-mark-3"></div>
-            <div class="lane yellow line-mark-4"></div>
+        <div class="lane yellow road-line-1"></div>
+        <div class="lane yellow road-line-2"></div>
+        <div class="lane yellow road-line-3"></div>
+        <div class="lane yellow road-line-4"></div>
 
-            <div class="lane green green-1"></div>
-            <div class="lane green green-2"></div>
+        <div class="lane green green-rail-1"></div>
+        <div class="lane green green-rail-2"></div>
 
-            <div class="legend-tag hall">Harness Area Hall 2</div>
-            <div class="legend-tag outputs">Outputs</div>
-            <div class="legend-tag rack">Rack Raw Materials</div>
-            <div class="legend-tag boxes">Boxes</div>
+        <div class="label hall">Harness Area Hall 2</div>
+        <div class="label output">Outputs</div>
+        <div class="label rack">Rack Raw Materials</div>
+        <div class="label boxes">Boxes</div>
 
-            <div class="input-zone">
-              <div class="zone-wall"></div>
-              <div class="zone-label input">Inputs</div>
-            </div>
-
-            <div class="output-zone">
-              <div class="zone-wall"></div>
-              <div class="zone-label output">Outputs</div>
-            </div>
-
-            <div class="rack-zone">
-              <div class="zone-wall"></div>
-              <div class="rack-boxes">
-                <span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span>
-              </div>
-              <div class="zone-label rack">Rack Raw Materials</div>
-            </div>
-
-            <div class="box-zone">
-              <div class="zone-wall"></div>
-              <div class="box-stack">
-                <span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span>
-              </div>
-              <div class="zone-label boxes">Boxes</div>
-            </div>
-
-            <div class="line-group" aria-label="Production lines">
-              <div class="line-unit"><div class="line-body"><div class="line-tag"><span>Line 5</span></div></div></div>
-              <div class="line-unit"><div class="line-body"><div class="line-tag"><span>Line 6</span></div></div></div>
-              <div class="line-unit"><div class="line-body"><div class="line-tag"><span>Line 7</span></div></div></div>
-              <div class="line-unit"><div class="line-body"><div class="line-tag"><span>Line 8</span></div></div></div>
-              <div class="line-unit"><div class="line-body"><div class="line-tag"><span>Line 9</span></div></div></div>
-              <div class="line-unit"><div class="line-body"><div class="line-tag"><span>Line 10</span></div></div></div>
-              <div class="line-unit"><div class="line-body"><div class="line-tag"><span>Line 11</span></div></div></div>
-              <div class="line-unit"><div class="line-body"><div class="line-tag"><span>Line 12</span></div></div></div>
-              <div class="line-unit"><div class="line-body"><div class="line-tag"><span>Line 13</span></div></div></div>
-            </div>
-          </div>
+        <div class="input-zone">
+          <div class="inner-label">Inputs</div>
         </div>
 
-        <div class="mini-card">Status <span class="live">Live</span></div>
+        <div class="output-zone">
+          <div class="inner-label">Outputs</div>
+        </div>
+
+        <div class="rack-zone">
+          <div class="rack-boxes">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="inner-label">Rack Raw Materials</div>
+        </div>
+
+        <div class="box-zone">
+          <div class="box-stack">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="inner-label">Boxes</div>
+        </div>
+
+        <div class="line-row" aria-label="Production lines">
+          <div class="line"><div class="line-tag">Line 5</div></div>
+          <div class="line"><div class="line-tag">Line 6</div></div>
+          <div class="line"><div class="line-tag">Line 7</div></div>
+          <div class="line"><div class="line-tag">Line 8</div></div>
+          <div class="line"><div class="line-tag">Line 9</div></div>
+          <div class="line"><div class="line-tag">Line 10</div></div>
+          <div class="line"><div class="line-tag">Line 11</div></div>
+          <div class="line"><div class="line-tag">Line 12</div></div>
+          <div class="line"><div class="line-tag">Line 13</div></div>
+        </div>
       </div>
     </div>
 
-    <div class="footer-owner">
-      <div class="owner-chip">Owner: bejaouisf8-spec</div>
+    <div class="info-pill">Status <span class="live">Live</span></div>
+
+    <div class="bottom-owner">
+      <div class="owner-tag">Owner: bejaouisf8-spec</div>
     </div>
   </div>
 </body>
